@@ -1,0 +1,7 @@
+{
+	"$schema": "node_modules/@biomejs/biome/configuration_schema.json",
+	"extends": ["@cookielab.io/biome-config/react"],
+	"files": {
+		"includes": ["**/*.ts", "**/*.tsx", "!node_modules", "!.wrangler", "!worker-configuration.d.ts"]
+	}
+}
