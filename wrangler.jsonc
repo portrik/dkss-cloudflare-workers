@@ -1,29 +1,28 @@
 {
-  // Schema reference for wrangler configuration
   "$schema": "node_modules/wrangler/config-schema.json",
-
-  // Name of your worker
-  "name": "__change_me__",
-
-  // Entry point for your worker
+  "name": "dkss-rwsdk-example",
   "main": "src/worker.tsx",
-
-  // Compatibility settings
   "compatibility_date": "2025-05-07",
   "compatibility_flags": ["nodejs_compat"],
-
-  // Assets configuration
   "assets": {
     "binding": "ASSETS"
   },
-
-  // Observability settings
   "observability": {
     "enabled": true
   },
-
-  // Environment variables
   "vars": {
-    // Add your environment variables here
-  }
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["SessionDurableObject"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "3bfcbba8-b38a-47e6-af7d-e8e253df0b64",
+      "database_name": "dkss-example-database"
+    }
+  ]
 }

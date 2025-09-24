@@ -17,6 +17,10 @@
     "clean": "npm run clean:vite",
     "clean:vite": "rm -rf ./node_modules/.vite",
     "release": "rw-scripts ensure-deploy-env && npm run clean && npm run build && RWSDK_DEPLOY=1 wrangler deploy",
+    "migrate:dev": "prisma generate && wrangler d1 migrations apply DB --local",
+    "migrate:prd": "wrangler d1 migrations DB --remote",
+    "migrate:new": "rw-scripts migrate-new",
+    "seed": "pnpm worker:run ./src/scripts/seed.ts",
     "generate": "rw-scripts ensure-env && wrangler types",
     "check": "npm run generate && npm run types",
     "types": "tsc",
@@ -24,23 +28,29 @@
     "lint": "biome check"
   },
   "dependencies": {
+    "@prisma/adapter-d1": "6.16.2",
+    "@prisma/client": "6.16.2",
     "rwsdk": "0.3.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
     "@cloudflare/vite-plugin": "1.7.4",
-    "@cloudflare/workers-types": "^4.20250407.0",
+    "@cloudflare/workers-types": "4.20250407.0",
     "@cookielab.io/biome-config": "0.9.0",
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "typescript": "^5.8.3",
-    "vite": "^6.2.6",
-    "wrangler": "~4.20.5"
+    "@types/node": "22.14.0",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "prisma": "6.16.2",
+    "typescript": "5.8.3",
+    "vite": "6.2.6",
+    "wrangler": "4.35.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
       "esbuild",
+      "prisma",
       "sharp",
       "workerd"
     ]
