@@ -20,7 +20,8 @@
       "./types/vite.d.ts"
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@generated/*": ["./generated/*"]
     },
     /* Enable importing .json files */
     "resolveJsonModule": true,

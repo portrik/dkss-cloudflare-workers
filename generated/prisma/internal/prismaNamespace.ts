@@ -390,7 +390,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Credential: 'Credential'
+  Credential: 'Credential',
+  Wish: 'Wish'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "credential"
+    modelProps: "user" | "credential" | "wish"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -558,6 +559,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Wish: {
+      payload: Prisma.$WishPayload<ExtArgs>
+      fields: Prisma.WishFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WishFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WishFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>
+        }
+        findFirst: {
+          args: Prisma.WishFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WishFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>
+        }
+        findMany: {
+          args: Prisma.WishFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>[]
+        }
+        create: {
+          args: Prisma.WishCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>
+        }
+        createMany: {
+          args: Prisma.WishCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WishCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>[]
+        }
+        delete: {
+          args: Prisma.WishDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>
+        }
+        update: {
+          args: Prisma.WishUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>
+        }
+        deleteMany: {
+          args: Prisma.WishDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WishUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WishUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>[]
+        }
+        upsert: {
+          args: Prisma.WishUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishPayload>
+        }
+        aggregate: {
+          args: Prisma.WishAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWish>
+        }
+        groupBy: {
+          args: Prisma.WishGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WishGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WishCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WishCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -615,12 +690,31 @@ export const CredentialScalarFieldEnum = {
 export type CredentialScalarFieldEnum = (typeof CredentialScalarFieldEnum)[keyof typeof CredentialScalarFieldEnum]
 
 
+export const WishScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  createdAt: 'createdAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type WishScalarFieldEnum = (typeof WishScalarFieldEnum)[keyof typeof WishScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -752,6 +846,7 @@ export interface PrismaClientOptions {
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   credential?: Prisma.CredentialOmit
+  wish?: Prisma.WishOmit
 }
 
 /* Types for Logging */

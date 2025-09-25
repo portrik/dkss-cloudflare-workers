@@ -9,4 +9,5 @@
  */
 export type * from './models/User.ts'
 export type * from './models/Credential.ts'
+export type * from './models/Wish.ts'
 export type * from './commonInputTypes.ts'

@@ -20,6 +20,7 @@ model User {
   createdAt   DateTime    @default(now())
 
   credentials Credential[] // Relationship: One user can have many credentials
+  wishes Wish[]
 }
 
 model Credential {
@@ -33,4 +34,15 @@ model Credential {
 
   @@index([credentialId])
   @@index([userId])
+}
+
+model Wish {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  content   String
+  createdAt DateTime  @default(now())
+  deletedAt DateTime?
+
+  @@index([createdAt, deletedAt])
 }

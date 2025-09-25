@@ -30,12 +30,15 @@
   "dependencies": {
     "@prisma/adapter-d1": "6.16.2",
     "@prisma/client": "6.16.2",
+    "@simplewebauthn/browser": "13.2.0",
+    "@simplewebauthn/server": "13.2.1",
+    "react": "19.2.0-canary-39cad7af-20250411",
     "rwsdk": "0.3.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
     "@cloudflare/vite-plugin": "1.7.4",
-    "@cloudflare/workers-types": "4.20250407.0",
+    "@cloudflare/workers-types": "4.20250906.0",
     "@cookielab.io/biome-config": "0.9.0",
     "@types/node": "22.14.0",
     "@types/react": "19.1.2",

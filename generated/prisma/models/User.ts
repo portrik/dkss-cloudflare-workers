@@ -166,6 +166,7 @@ export type UserWhereInput = {
   username?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   credentials?: Prisma.CredentialListRelationFilter
+  wishes?: Prisma.WishListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -173,6 +174,7 @@ export type UserOrderByWithRelationInput = {
   username?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   credentials?: Prisma.CredentialOrderByRelationAggregateInput
+  wishes?: Prisma.WishOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -183,6 +185,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   credentials?: Prisma.CredentialListRelationFilter
+  wishes?: Prisma.WishListRelationFilter
 }, "id" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -208,6 +211,7 @@ export type UserCreateInput = {
   username: string
   createdAt?: Date | string
   credentials?: Prisma.CredentialCreateNestedManyWithoutUserInput
+  wishes?: Prisma.WishCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -215,6 +219,7 @@ export type UserUncheckedCreateInput = {
   username: string
   createdAt?: Date | string
   credentials?: Prisma.CredentialUncheckedCreateNestedManyWithoutUserInput
+  wishes?: Prisma.WishUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -222,6 +227,7 @@ export type UserUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credentials?: Prisma.CredentialUpdateManyWithoutUserNestedInput
+  wishes?: Prisma.WishUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -229,6 +235,7 @@ export type UserUncheckedUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   credentials?: Prisma.CredentialUncheckedUpdateManyWithoutUserNestedInput
+  wishes?: Prisma.WishUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -294,16 +301,32 @@ export type UserUpdateOneRequiredWithoutCredentialsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCredentialsInput, Prisma.UserUpdateWithoutCredentialsInput>, Prisma.UserUncheckedUpdateWithoutCredentialsInput>
 }
 
+export type UserCreateNestedOneWithoutWishesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWishesInput, Prisma.UserUncheckedCreateWithoutWishesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWishesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutWishesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWishesInput, Prisma.UserUncheckedCreateWithoutWishesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWishesInput
+  upsert?: Prisma.UserUpsertWithoutWishesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWishesInput, Prisma.UserUpdateWithoutWishesInput>, Prisma.UserUncheckedUpdateWithoutWishesInput>
+}
+
 export type UserCreateWithoutCredentialsInput = {
   id?: string
   username: string
   createdAt?: Date | string
+  wishes?: Prisma.WishCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCredentialsInput = {
   id?: string
   username: string
   createdAt?: Date | string
+  wishes?: Prisma.WishUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCredentialsInput = {
@@ -326,12 +349,58 @@ export type UserUpdateWithoutCredentialsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wishes?: Prisma.WishUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCredentialsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wishes?: Prisma.WishUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutWishesInput = {
+  id?: string
+  username: string
+  createdAt?: Date | string
+  credentials?: Prisma.CredentialCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutWishesInput = {
+  id?: string
+  username: string
+  createdAt?: Date | string
+  credentials?: Prisma.CredentialUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutWishesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutWishesInput, Prisma.UserUncheckedCreateWithoutWishesInput>
+}
+
+export type UserUpsertWithoutWishesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutWishesInput, Prisma.UserUncheckedUpdateWithoutWishesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutWishesInput, Prisma.UserUncheckedCreateWithoutWishesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutWishesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutWishesInput, Prisma.UserUncheckedUpdateWithoutWishesInput>
+}
+
+export type UserUpdateWithoutWishesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  credentials?: Prisma.CredentialUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutWishesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  credentials?: Prisma.CredentialUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -341,10 +410,12 @@ export type UserUncheckedUpdateWithoutCredentialsInput = {
 
 export type UserCountOutputType = {
   credentials: number
+  wishes: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   credentials?: boolean | UserCountOutputTypeCountCredentialsArgs
+  wishes?: boolean | UserCountOutputTypeCountWishesArgs
 }
 
 /**
@@ -364,12 +435,20 @@ export type UserCountOutputTypeCountCredentialsArgs<ExtArgs extends runtime.Type
   where?: Prisma.CredentialWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountWishesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WishWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   username?: boolean
   createdAt?: boolean
   credentials?: boolean | Prisma.User$credentialsArgs<ExtArgs>
+  wishes?: boolean | Prisma.User$wishesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -394,6 +473,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "createdAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   credentials?: boolean | Prisma.User$credentialsArgs<ExtArgs>
+  wishes?: boolean | Prisma.User$wishesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -403,6 +483,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     credentials: Prisma.$CredentialPayload<ExtArgs>[]
+    wishes: Prisma.$WishPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -803,6 +884,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   credentials<T extends Prisma.User$credentialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$credentialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CredentialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  wishes<T extends Prisma.User$wishesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$wishesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WishPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1242,6 +1324,30 @@ export type User$credentialsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.CredentialScalarFieldEnum | Prisma.CredentialScalarFieldEnum[]
+}
+
+/**
+ * User.wishes
+ */
+export type User$wishesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Wish
+   */
+  select?: Prisma.WishSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Wish
+   */
+  omit?: Prisma.WishOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WishInclude<ExtArgs> | null
+  where?: Prisma.WishWhereInput
+  orderBy?: Prisma.WishOrderByWithRelationInput | Prisma.WishOrderByWithRelationInput[]
+  cursor?: Prisma.WishWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WishScalarFieldEnum | Prisma.WishScalarFieldEnum[]
 }
 
 /**

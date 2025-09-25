@@ -5,9 +5,14 @@ const Document: FC<PropsWithChildren> = ({ children }) => (
 	<html lang="en">
 		<head>
 			<meta charSet="utf-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+			<meta name="theme-color" content="#ff6b35" />
+			<meta
+				name="description"
+				content="DKSS Cloudflare Worker - A modern wishes application with passkey authentication"
+			/>
 
-			<title>DKSS Cloudflare Worker Example</title>
+			<title>DKSS Wishes - Cloudflare Worker</title>
 
 			<link rel="modulepreload" href="/src/client.tsx" />
 			<link rel="stylesheet" href={stylesUrl} />

@@ -1,7 +1,5 @@
-import { PrismaClient } from "@generated/prisma";
+import { PrismaClient } from "@generated/prisma/client";
 import { PrismaD1 } from "@prisma/adapter-d1";
-
-export type * from "@generated/prisma";
 
 let db: PrismaClient;
 
@@ -14,10 +12,6 @@ let db: PrismaClient;
 //   below
 const setupDb = async (env: Env) => {
 	db = new PrismaClient({
-		// context(justinvdm, 21-05-2025): prisma-client generated type appears to
-		// consider D1 adapter incompatible, though in runtime (dev and production)
-		// it works
-		// @ts-expect-error
 		adapter: new PrismaD1(env.DB),
 	});
 
@@ -26,3 +20,6 @@ const setupDb = async (env: Env) => {
 };
 
 export { db, setupDb };
+export type * from "@generated/prisma/client";
+export type * from "@generated/prisma/enums";
+export type * from "@generated/prisma/models";

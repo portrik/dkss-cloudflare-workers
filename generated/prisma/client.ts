@@ -47,3 +47,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Credential = Prisma.CredentialModel
+/**
+ * Model Wish
+ * 
+ */
+export type Wish = Prisma.WishModel

@@ -26,10 +26,10 @@ const config: runtime.GetPrismaClientConfig = {
       "fromEnvVar": null
     },
     "config": {
+      "generatedFileExtension": "ts",
       "moduleFormat": "esm",
       "runtime": "workerd",
       "importFileExtension": "ts",
-      "generatedFileExtension": "ts",
       "engineType": "library"
     },
     "binaryTargets": [
@@ -39,10 +39,7 @@ const config: runtime.GetPrismaClientConfig = {
         "native": true
       }
     ],
-    "previewFeatures": [
-      "driverAdapters",
-      "queryCompiler"
-    ],
+    "previewFeatures": [],
     "sourceFilePath": "/Users/patrik/Git/Cookielab/dkss/cloudflare-workers/prisma/schema.prisma",
     "isCustomOutput": true
   },
@@ -53,6 +50,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -61,8 +59,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n\n  runtime                = \"workerd\"\n  moduleFormat           = \"esm\"\n  generatedFileExtension = \"ts\"\n  importFileExtension    = \"ts\"\n\n  output          = \"../generated/prisma\"\n  previewFeatures = [\"queryCompiler\", \"driverAdapters\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid()) // User ID (UUID-based)\n  username  String   @unique\n  createdAt DateTime @default(now())\n\n  credentials Credential[] // Relationship: One user can have many credentials\n}\n\nmodel Credential {\n  id           String   @id @default(uuid()) // Internal DB ID\n  userId       String   @unique // Every credential is linked to a specific user\n  user         User     @relation(fields: [userId], references: [id])\n  createdAt    DateTime @default(now())\n  credentialId String   @unique // WebAuthn credential identifier\n  publicKey    Bytes\n  counter      Int      @default(0)\n\n  @@index([credentialId])\n  @@index([userId])\n}\n",
-  "inlineSchemaHash": "fecb6f76eaa5a23134c38f743d6fb3ddd83c83aa8db83345a1583510d99700a0",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n\n  runtime                = \"workerd\"\n  moduleFormat           = \"esm\"\n  generatedFileExtension = \"ts\"\n  importFileExtension    = \"ts\"\n\n  output = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid()) // User ID (UUID-based)\n  username  String   @unique\n  createdAt DateTime @default(now())\n\n  credentials Credential[] // Relationship: One user can have many credentials\n  wishes      Wish[]\n}\n\nmodel Credential {\n  id           String   @id @default(uuid()) // Internal DB ID\n  userId       String   @unique // Every credential is linked to a specific user\n  user         User     @relation(fields: [userId], references: [id])\n  createdAt    DateTime @default(now())\n  credentialId String   @unique // WebAuthn credential identifier\n  publicKey    Bytes\n  counter      Int      @default(0)\n\n  @@index([credentialId])\n  @@index([userId])\n}\n\nmodel Wish {\n  id        String    @id @default(uuid())\n  userId    String\n  user      User      @relation(fields: [userId], references: [id])\n  content   String\n  createdAt DateTime  @default(now())\n  deletedAt DateTime?\n\n  @@index([createdAt, deletedAt])\n}\n",
+  "inlineSchemaHash": "19d6147cc2f52f17ab3a92bcd29d8ace39245cef2f3dab82a70d55b85c30552c",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
@@ -72,7 +70,7 @@ const config: runtime.GetPrismaClientConfig = {
   "dirname": ""
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"credentials\",\"kind\":\"object\",\"type\":\"Credential\",\"relationName\":\"CredentialToUser\"}],\"dbName\":null},\"Credential\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CredentialToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"credentialId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"publicKey\",\"kind\":\"scalar\",\"type\":\"Bytes\"},{\"name\":\"counter\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"credentials\",\"kind\":\"object\",\"type\":\"Credential\",\"relationName\":\"CredentialToUser\"},{\"name\":\"wishes\",\"kind\":\"object\",\"type\":\"Wish\",\"relationName\":\"UserToWish\"}],\"dbName\":null},\"Credential\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CredentialToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"credentialId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"publicKey\",\"kind\":\"scalar\",\"type\":\"Bytes\"},{\"name\":\"counter\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"Wish\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToWish\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.engineWasm = {
   getRuntime: async () => await import("./query_engine_bg.js"),
 
@@ -241,6 +239,16 @@ export interface PrismaClient<
     * ```
     */
   get credential(): Prisma.CredentialDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.wish`: Exposes CRUD operations for the **Wish** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wishes
+    * const wishes = await prisma.wish.findMany()
+    * ```
+    */
+  get wish(): Prisma.WishDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(dirname: string): PrismaClientConstructor {

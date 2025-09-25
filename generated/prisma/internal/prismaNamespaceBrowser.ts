@@ -20,7 +20,8 @@ export type * from './prismaNamespace.ts'
 export const Decimal = runtime.Decimal
 export const ModelName = {
   User: 'User',
-  Credential: 'Credential'
+  Credential: 'Credential',
+  Wish: 'Wish'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -56,10 +57,29 @@ export const CredentialScalarFieldEnum = {
 export type CredentialScalarFieldEnum = (typeof CredentialScalarFieldEnum)[keyof typeof CredentialScalarFieldEnum]
 
 
+export const WishScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  createdAt: 'createdAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type WishScalarFieldEnum = (typeof WishScalarFieldEnum)[keyof typeof WishScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
