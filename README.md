@@ -2,6 +2,8 @@
 
 This repository is just a demo for a DKSS lightning talk about Cloudflare Workers. The project uses the [RedwoodSDK](https://rwsdk.com/) starter as the base for a simple implementation of a wish book with a passkey login system.
 
+The deployment is available [here](https://dkss-rwsdk-example.patrik-dvoracek.workers.dev/wishes).
+
 ## Running the project
 
 To run in development mode:
