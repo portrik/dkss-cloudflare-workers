@@ -1,24 +1,18 @@
-# RedwoodSDK Minimal Starter
+# DKSS Cloudflare Workers Example
 
-This starter gives you a bare-bones RedwoodSDK project.
+This repository is just a demo for a DKSS lightning talk about Cloudflare Workers. The project uses the [RedwoodSDK](https://rwsdk.com/) starter as the base for a simple implementation of a wish book with a passkey login system.
 
-Create your new project:
+## Running the project
 
-```shell
-npx create-rwsdk my-project-name -t minimal
-cd my-project-name
-npm install
+To run in development mode:
+
+```fish
+pnpm dev:init # This will initialize all the necessary Wrangler & Prisma generated files for you, including the database and it's seeding
+pnpm dev
 ```
 
-## Running the dev server
+To run in a local preview mode via Wrangler, you will have to first initialize the local database and then run:
 
-```shell
-npm run dev
+```fish
+pnpm preview
 ```
-
-Point your browser to the URL displayed in the terminal (e.g. `http://localhost:5173/`). You should see a "Hello World" message in your browser.
-
-## Further Reading
-
-- [RedwoodSDK Documentation](https://docs.rwsdk.com/)
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers)
